@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acerca de Nosotros - Freddy fazbear's pizza</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="CSS/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/ico.png" />
+</head>
+<style>
+    .footer {
+    position: relative;
+    z-index: 2;
+}
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #000000;
+        color: #7e7b7e;
+        margin: 0;
+        padding: 0;
+    }
+
+    .acercade {
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    .contenido-acerca p {
+        font-size: 1.5em;
+    }
+
+    .contenido-acerca h2 {
+        font-size: 2.5em;
+        margin-top: 0.5em;
+    }
+
+    .main-content {
+    position: relative;
+    padding: 20px;
+    height: auto; 
+    background-color: rgb(255, 255, 255);
+    background-size: 1300px;
+    background-position: center;
+}
+
+
+    #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1; 
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .about-us h1,
+    .about-us h2 {
+        color: #000000;
+        font-size: 20px;
+    }
+
+    .about-us p,
+    .about-us ul {
+        color: #000000;
+        font-size: 15px;
+    }
+
+    .about-us ul {
+        list-style-type: none;
+        padding-left: 0;
+        font-size: 15px;
+    }
+
+    .about-us ul li {
+        margin-bottom: 15px;
+    }
+
+    .gif-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .gif-container img {
+        max-width: 100%;
+        height: auto;
+    }
+    .welcome-gif{
+        width: 20%;
+        
+    }
+</style>
+<body>
+    <header>
+        <nav>
+            <div class="wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/ico.png" alt="Syscotel Logo">Freddy's</a>
+                </div>
+                <div class="search-cart">
+                    <span class="search-icon"><i class="fas fa-search" onclick="toggleSearch()"></i></span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar..."
+                        style="display: none;">
+                </div>
+                <ul class="nav-links">
+                    <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="about_us.html">Nosotros</a></li>
+                    <li>
+                        <a href="#" class="desktop-item">Secciones</a>
+                        <input type="checkbox" id="showDrop">
+                        <ul class="drop-menu">
+                            <li><a href="menu.html">Menu general</a></li>
+                            <li><a href="Monty.html">Monty</a></li>
+                            <li><a href="Freddy.html">Freddy</a></li>
+                            <li><a href="Chica.html">Chica</a></li>
+                            <li><a href="Roxy.html">Roxy</a></li>
+                          </ul>
+                    </li>
+                    
+                    </li>
+                    <div class="search-cart">
+                        <a href="carrito.html">
+                            <i class="fas fa-shopping-cart" style="color: black"></i>
+                        </a>
+                    </div>
+
+                    <script>
+                        function toggleUserOptions() {
+                            var userOptions = document.getElementById("userOptions");
+                            if (userOptions.style.display === "block") {
+                                userOptions.style.display = "none";
+                            } else {
+                                userOptions.style.display = "block";
+                            }
+                        }
+
+                        function logout() {
+                            window.location.href = "php/logout.php";
+                        }
+                    </script>
+            </div>
+        </nav>
+        <script>
+            var lastScrollTop = 0;
+
+            window.addEventListener("scroll", function () {
+                var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > lastScrollTop && currentScroll > 70) {
+                    document.querySelector("nav").style.top = "-70px";
+                } else {
+                    document.querySelector("nav").style.top = "0";
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, false);
+            function toggleSearch() {
+                var searchInput = document.getElementById("searchInput");
+                if (searchInput.style.display === "none") {
+                    searchInput.style.display = "inline-block";
+                } else {
+                    searchInput.style.display = "none";
+                }
+            }
+            document.getElementById("searchInput").addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    searchProducts();
+                }
+            });
+
+            function searchProducts() {
+                var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+                var allProducts = document.querySelectorAll(".card-product");
+
+                var animatedElements = document.querySelectorAll('[data-aos]');
+                animatedElements.forEach(function (element) {
+                    element.setAttribute('data-aos', '');
+                    element.removeAttribute('data-aos');
+                });
+
+                allProducts.forEach(function (product) {
+                    var productName = product.querySelector("h3").textContent.toLowerCase();
+                    if (productName.includes(searchTerm)) {
+                        product.style.display = "block";
+                        var section = product.closest('div.container-products');
+                        if (section) {
+                            section.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+                        }
+                    } else {
+                        product.style.display = "none";
+                    }
+                });
+            }
+        </script>
+
+    </header>
+
+    <section class="acercade">
+        <div class="contenido-acerca">
+            <br><br><br><br>
+            <img src="img/hola.webp" alt="GIF de bienvenida" class="welcome-gif" data-aos="fade-up">
+            <div class="contenido-acerca" data-aos="fade-up">
+                <h2>Nuestra Historia y Misión</h2>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div id="particles-js"></div>
+        <section class="about-us">
+            <div class="container" data-aos="fade-up">
+                <h1>Acerca de Freddy Fazbear's Pizza</h1>
+                <br>
+                <p>En Freddy Fazbear's Pizza, nos enorgullecemos de ofrecer una experiencia única y misteriosa junto con nuestras pizzas, elaboradas con ingredientes frescos y de alta calidad. Nuestra historia es más que solo la pizza; es una mezcla de diversión, entretenimiento y un toque de misterio que ha cautivado a nuestros clientes durante años.</p>
+                <br>
+                <h2>Nuestra Historia</h2>
+                <br>
+                <p>Freddy Fazbear's Pizza fue fundada en la década de 1980 con la visión de crear un lugar donde las familias y amigos pudieran disfrutar de deliciosas pizzas en un ambiente lleno de entretenimiento animatrónico. A lo largo de los años, hemos crecido y evolucionado, pero nuestro compromiso con la calidad, el servicio al cliente y el misterio sigue siendo el mismo. Con personajes icónicos como Freddy Fazbear, Bonnie, Chica y Foxy, hemos creado un legado que mezcla lo culinario con el entretenimiento.</p>
+                <br>
+                <h2>Nuestra Misión</h2>
+                <br>
+                <p>Nuestra misión es ofrecer una experiencia gastronómica y de entretenimiento única a través de nuestras pizzas artesanales y nuestros espectáculos animatrónicos. Nos esforzamos por ser el lugar preferido de nuestros clientes para disfrutar de una excelente comida, crear recuerdos inolvidables y experimentar el enigma que rodea a Freddy Fazbear's Pizza.</p>
+                <br>
+                <h2>Valores</h2>
+                <br>
+                <ul>
+                    <li>Calidad: Utilizamos solo los mejores ingredientes para garantizar que cada pizza sea deliciosa y memorable.</li>
+                    <li>Servicio: Nos dedicamos a brindar un servicio excepcional y una experiencia agradable a todos nuestros clientes, manteniendo siempre un ambiente seguro.</li>
+                    <li>Innovación: Siempre estamos buscando nuevas formas de mejorar y ofrecer productos y espectáculos innovadores y emocionantes.</li>
+                    <li>Comunicación: Valoramos la retroalimentación de nuestros clientes y siempre estamos dispuestos a escuchar sus sugerencias para mejorar su experiencia.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section about">
+                <h3>Freddy fazbear's pizza</h3>
+                <p>Las mejores pizzas con los ingredientes más frescos. Ordena ahora y disfruta de una experiencia única.</p>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contáctanos</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> (+503) 7691-2222</li>
+                    <li><i class="fas fa-envelope"></i> Freddyfazbearspizza@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Calle Principal, Ciudad, Principal</li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h3>Síguenos</h3>
+                <div class="flex justify-center space-x-5">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" alt="Facebook" />
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/instagram-new.png" alt="Instagram" />
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/youtube-play.png" alt="YouTube" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <p>&copy; 2024 Freddy fazbear's pizza. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Particles.js library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Font Awesome icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha384-rp5soZISbB1i+cwb+bFdOL7p7f5n28vYpqmZmx1fp1b+OUukR0Z85D+w0xv5Hnpz" crossorigin="anonymous"></script>
+    <!-- AOS library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 50,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "shape": {
+                        "type": "image",
+                        "image": {
+                            "src": "img/cupcake.webp", 
+                            "width": 100,
+                            "height": 100
+                        }
+                    },
+                    "opacity": {
+                        "value": 100,
+                        "random": false,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 100,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 20,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": false
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": false,
+                            "mode": "repulse"
+                        },
+                        "onclick": {
+                            "enable": false,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 400,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+    </script>
+</body>
+</html>

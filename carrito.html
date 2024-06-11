@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freddy fazbear's pizza - Carrito</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/ico.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-...hash..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        
+    <style>
+ .card-product {
+        width: 60%;
+        margin-bottom: 30px;
+        margin-left: 30px;
+        border: 5px solid #ccc;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: border-color 0.3s; 
+    }
+
+
+    @keyframes borderAnimation {
+        0% { border-color: red; }
+        20% { border-color: orange; }
+        40% { border-color: yellow; }
+        60% { border-color: green; }
+        80% { border-color: blue; }
+        100% { border-color: violet; }
+    }
+
+    .card-product:hover {
+        animation: borderAnimation 2s infinite; 
+    }
+      
+        .container-img img {
+            width: 175px;
+            height: 250px;
+            text-align: center;
+        }
+
+        .content-card-product {
+            padding: 15px;
+            background-color: #f9f9f9;
+            text-align: center;
+
+        }
+
+        .content-card-product h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .content-card-product p.price {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .product-image {
+            text-align: right;
+            max-width: 300px;
+            max-height: auto;
+            margin-bottom: 20px;
+        }
+        
+        .continue-shopping {
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 25px;
+        }
+
+        .continue-shopping a {
+            color: #ff9900;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <br><br><br><br><br>
+        <div class="user-greeting">
+        </div>
+        </div>
+        <nav>
+            <div class="wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/ico.png" alt="Syscotel Logo">Freddy's</a>
+                </div>
+                <ul class="nav-links">
+                    <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+                    <li><a href="index.php">Inicio</a></li>
+                    <li><a href="about_us.html">Nosotros</a></li>
+                    <li>
+                        <a href="#" class="desktop-item">Secciones</a>
+                        <input type="checkbox" id="showDrop">
+                        <ul class="drop-menu">
+                            <li><a href="menu.html">Menu general</a></li>
+                            <li><a href="Monty.html">Monty</a></li>
+                            <li><a href="Freddy.html">Freddy</a></li>
+                            <li><a href="Chica.html">Chica</a></li>
+                            <li><a href="Roxy.html">Roxy</a></li>
+                        </ul>
+                    </li>
+                    <div class="search-cart">
+                        <a href="carrito.html">
+                            <i class="fas fa-shopping-cart" style="color: black"></i>
+                        </a>
+                    </div>
+
+    </header>
+
+    <main>
+        <br>
+        <h1 data-aos="fade-up" class="heading-1">Productos en carrito</h1>
+        <div class="continue-shopping" data-aos="fade-up">
+            <a href="index.html">Seguir comprando</a>
+        </div>
+
+        <hr class="separator" data-aos="fade-up">
+        <br>
+        <br>
+        <div class='container-products' data-aos='fade-up'>
+            <div class="card-product">
+                <div class="container-img">
+                    <img src="img/freddy/pizzza.jpg" alt="Bonnie burger" />
+                </div>
+                <div class="content-card-product">
+                    <h3>Freddy Fazbear's Cookie Pizza</h3>
+                    <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                    <p class="price">$7.99 <span></p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="container-img">
+                    <img src="img/chica/chikken.png" alt="Foxy burger" />
+                </div>
+                <div class="content-card-product">
+                    <h3>Chica crispy fried chicken</h3>
+                    <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                    <p class="price">$14.00</p>
+                </div>
+            </div>
+
+            <br><br><br><br>
+
+    </main>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="pago.html"
+            style="padding: 10px 20px; background-color: #ff9900; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 17px;">Comprar</a>
+    </div>
+
+    <br><br><br><br>
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section about">
+                <h3>SYSCOTEL</h3>
+                <p>Bienvenido a Syscotel, tu destino definitivo para todo lo relacionado con la electrónica y la
+                    tecnología de vanguardia. Situada en una ubicación privilegiada en el centro de la ciudad, Syscotel
+                    se destaca
+                    como un oasis de innovación en un mundo digital en constante evolución.</p>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contáctanos</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> (+503) 7850-8218</li>
+                    <li><i class="fas fa-envelope"></i> SYSCOTEL@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Calle Principal, Ciudad, Principal</li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h3>Síguenos</h3>
+                <div class="flex justify-center space-x-5">
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" alt="Facebook" />
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/twitter.png" alt="Twitter" />
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/instagram-new.png" alt="Instagram" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

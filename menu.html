@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freddy fazbear's pizza - Menú general</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="CSS/user.css">
+    <link rel="stylesheet" href="CSS/vista_rapida.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/ico.png" />
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/ico.png" alt="Syscotel Logo">Freddy's</a>
+                </div>
+                <div class="search-cart">
+                    <span class="search-icon"><i class="fas fa-search" onclick="toggleSearch()"></i></span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar..."
+                        style="display: none;">
+                </div>
+                <ul class="nav-links">
+                    <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="about_us.html">Nosotros</a></li>
+                    <li>
+                        <a href="#" class="desktop-item">Secciones</a>
+                        <input type="checkbox" id="showDrop">
+                        <ul class="drop-menu">
+                            <li><a href="menu.html">Menu general</a></li>
+                            <li><a href="Monty.html">Monty</a></li>
+                            <li><a href="Freddy.html">Freddy</a></li>
+                            <li><a href="Chica.html">Chica</a></li>
+                            <li><a href="Roxy.html">Roxy</a></li>
+                        </ul>
+                    </li>
+
+                    </li>
+                    <div class="search-cart">
+                        <a href="carrito.html">
+                            <i class="fas fa-shopping-cart" style="color: black"></i>
+                        </a>
+                    </div>
+
+                    <script>
+                        function toggleUserOptions() {
+                            var userOptions = document.getElementById("userOptions");
+                            if (userOptions.style.display === "block") {
+                                userOptions.style.display = "none";
+                            } else {
+                                userOptions.style.display = "block";
+                            }
+                        }
+
+                        function logout() {
+                            window.location.href = "php/logout.php";
+                        }
+                    </script>
+            </div>
+        </nav>
+        <script>
+            var lastScrollTop = 0;
+
+            window.addEventListener("scroll", function () {
+                var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > lastScrollTop && currentScroll > 70) {
+                    document.querySelector("nav").style.top = "-70px";
+                } else {
+                    document.querySelector("nav").style.top = "0";
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, false);
+            function toggleSearch() {
+                var searchInput = document.getElementById("searchInput");
+                if (searchInput.style.display === "none") {
+                    searchInput.style.display = "inline-block";
+                } else {
+                    searchInput.style.display = "none";
+                }
+            }
+            document.getElementById("searchInput").addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    searchProducts();
+                }
+            });
+
+            function searchProducts() {
+                var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+                var allProducts = document.querySelectorAll(".card-product");
+
+                var animatedElements = document.querySelectorAll('[data-aos]');
+                animatedElements.forEach(function (element) {
+                    element.setAttribute('data-aos', '');
+                    element.removeAttribute('data-aos');
+                });
+
+                allProducts.forEach(function (product) {
+                    var productName = product.querySelector("h3").textContent.toLowerCase();
+                    if (productName.includes(searchTerm)) {
+                        product.style.display = "block";
+                        var section = product.closest('div.container-products');
+                        if (section) {
+                            section.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+                        }
+                    } else {
+                        product.style.display = "none";
+                    }
+                });
+            }
+        </script>
+
+    </header>
+
+    <br><br><br><br><br>
+    <section>
+        <main class="main-content">
+            <br>
+            <h1 class="heading-1">Menú general</h1>
+            <br><br><br><br><br>
+
+            <div class="container-products">
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal1')">
+                        <img src="img/monty/protein-shake.png" alt="Monty" />
+                    </div>
+                    <div id="modal1" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/monty/protein-shake.png" alt="Monty" class="product-image" />
+                            <h2>Monty protein-shake</h2>
+                            <p>Monty Protein Shake es una deliciosa y nutritiva bebida proteica diseñada para aquellos
+                                que buscan una forma conveniente y sabrosa de aumentar su ingesta de proteínas. Con
+                                Monty, obtienes una mezcla equilibrada de proteínas de alta calidad, junto con otros
+                                nutrientes esenciales para apoyar tus metas de salud y fitness.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Monty protein-shake</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$14.00 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal2')">
+                        <img src="img/monty/melon.png" alt="Monty" />
+                    </div>
+
+                    <div id="modal2" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/monty/melon.png" alt="Monty" class="product-image" />
+                            <h2>Melon Meltdown</h2>
+                            <p>Es un jugo refrescante y delicioso que combina el sabor jugoso y dulce de los melones con
+                                un toque refrescante y revitalizante</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Melon Meltdown</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$12.00 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal3')">
+                        <img src="img/monty/coca.png" alt="Monty" />
+                    </div>
+
+                    <div id="modal3" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/monty/coca.png" alt="Monty" class="product-image" />
+                            <h2>Monty Fizzy Faz</h2>
+                            <p>Es una soda que te lleva en un viaje de sabores audaz y emocionante. Inspirada en la
+                                energía vibrante y el espíritu aventurero de los clásicos juegos de feria, esta soda
+                                ofrece una explosión de sabores que te dejará con ganas de más</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Monty Fizzy Faz</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$3.99 <span></p>
+                    </div>
+                </div>
+
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal4')">
+                        <img src="img/monty/paleta.png" alt="Monty" />
+                    </div>
+
+                    <div id="modal4" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/monty/paleta.png" alt="Monty" class="product-image" />
+                            <h2>Monty paleta</h2>
+                            <p>Es un delicioso postre congelado que te transporta a un mundo de sabores exóticos y
+                                refrescantes.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Monty paleta</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$4.99 <span></p>
+                    </div>
+                </div>
+
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal5')">
+                        <img src="img/monty/pasta.jpg" alt="Monty" />
+                    </div>
+
+                    <div id="modal5" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/monty/pasta.jpg" alt="Monty" class="product-image" />
+                            <h2>Monty spagueti</h2>
+                            <p>Monty Spagueti es una deliciosa creación gastronómica inspirada en el animatrónico Monty.
+                                Imagínalo como un plato extravagante y divertido que combina la esencia de la cocina
+                                italiana con un toque de creatividad y diversión.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Monty Spagueti</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$7.99 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal6')">
+                        <img src="img/monty/salad.jpg" alt="Monty" />
+                    </div>
+
+                    <div id="modal6" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/monty/salad.jpg" alt="Monty" class="product-image" />
+                            <h2>Monty chicken salad</h2>
+                            <p>Monty Chicken Salad es una interpretación fresca y deliciosa inspirada en el animatrónico
+                                Monty. Imagina una ensalada vibrante y colorida que combina ingredientes frescos y
+                                sabrosos con un toque de diversión y originalidad.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Monty chicken salad</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$7.99 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal7')">
+                        <img src="img/monty/soda.webp" alt="Monty" />
+                    </div>
+
+                    <div id="modal7" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/monty/soda.webp" alt="Monty" class="product-image" />
+                            <h2>Monty super lemon soda</h2>
+                            <p>Monty Super Lemon Soda es una bebida refrescante y llena de sabor, inspirada en la
+                                energía y la personalidad del animatrónico Monty. Imagina una explosión de frescura
+                                cítrica con un toque único que te hace querer más.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Monty super lemon soda</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$1.99 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal8')">
+                        <img src="img/roxy/chocolate & cherry mousse.png" alt="Monty" />
+                    </div>
+                    <div id="modal8" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/roxy/chocolate & cherry mousse.png" alt="Monty" class="product-image" />
+                            <h2>Chocolate & cherry mousse</h2>
+                            <p>Es una bebida innovadora que combina la riqueza del chocolate con la dulzura y acidez de
+                                las cerezas, creando una experiencia única y deliciosa. </p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Chocolate & cherry mousse</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$9.00 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal9')">
+                        <img src="img/roxy/nachos.avif" alt="Monty" />
+                    </div>
+
+                    <div id="modal9" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/roxy/nachos.avif" alt="Monty" class="product-image" />
+                            <h2>Roxy's Rockin' Nachoes</h2>
+                            <p>Roxy's Rockin' Nachos es una opción divertida y deliciosa para cualquier ocasión.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Roxy's Rockin' Nachoes</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$14.00 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal10')">
+                        <img src="img/roxy/fizzy faz.webp" alt="Monty" />
+                    </div>
+
+                    <div id="modal10" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/roxy/fizzy faz.webp" alt="Monty" class="product-image" />
+                            <h2>Roxy Fizzy Faz</h2>
+                            <p>Es una soda que te lleva en un viaje de sabores audaz y emocionante. Inspirada en la
+                                energía vibrante y el espíritu aventurero de los clásicos juegos de feria, esta soda
+                                ofrece una explosión de sabores que te dejará con ganas de más</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Roxy Fizzy Faz</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$3.99 <span></p>
+                    </div>
+                </div>
+
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal11')">
+                        <img src="img/roxy/paleta.jpg" alt="Monty" />
+                    </div>
+
+                    <div id="modal11" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/roxy/paleta.jpg" alt="Monty" class="product-image" />
+                            <h2>Roxy paleta</h2>
+                            <p>Es un delicioso postre congelado que te transporta a un mundo de sabores exóticos y
+                                refrescantes.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Roxy paleta</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$4.99 <span></p>
+                    </div>
+                </div>
+
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal12')">
+                        <img src="img/roxy/carrot.jpg" alt="Monty" />
+                    </div>
+
+                    <div id="modal12" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/roxy/carrot.jpg" alt="Monty" class="product-image" />
+                            <h2>Roxy's Carrot Cake</h2>
+                            <p>El pastel de zanahoria "Roxy's Carrot Cake" es una delicia clásica que combina la dulzura
+                                natural de las zanahorias con un toque especiado y una textura húmeda y esponjosa.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Roxy's Carrot Cake</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$7.99 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal13')">
+                        <img src="img/roxy/soda.webp" alt="Monty" />
+                    </div>
+
+                    <div id="modal13" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/roxy/soda.webp" alt="Roxy" class="product-image" />
+                            <h2>Roxy grape flavor soda</h2>
+                            <p>Roxy grape falvor es una bebida refrescante y llena de sabor, inspirada en la energía y
+                                la personalidad del animatrónico Monty. Imagina una explosión de frescura cítrica con un
+                                toque único que te hace querer más.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Roxy grape flavor soda</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$1.99 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal14')">
+                        <img src="img/freddy/brownie.png" alt="Freddy" />
+                    </div>
+                    <div id="modal14" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/freddy/brownie.png" alt="Freddy" class="product-image" />
+                            <h2>Freddy Brownie</h2>
+                            <p>El "Freddy Brownie" es un postre indulgente y decadente que promete satisfacer a
+                                cualquier amante del chocolate.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Freddy Brownie</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$10.00 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal15')">
+                        <img src="img/freddy/pizza.webp" alt="Freddy" />
+                    </div>
+
+                    <div id="modal15" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/freddy/pizza.webp" alt="Freddy" class="product-image" />
+                            <h2>Freddy's Gummy Pizza</h2>
+                            <p>Freddy's Gummy Pizza es una divertida y creativa opción de postre que deleitará tanto a
+                                niños como a adultos. Esta "pizza" dulce combina una variedad de golosinas y gominolas
+                                para crear una experiencia visualmente atractiva y deliciosamente divertida.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Freddy's Gummy Pizza</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$7.00 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal16')">
+                        <img src="img/freddy/fizzy.webp" alt="Freddy" />
+                    </div>
+
+                    <div id="modal16" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/freddy/fizzy.webp" alt="Freddy" class="product-image" />
+                            <h2>Freddy Fizzy Faz</h2>
+                            <p>Es una soda que te lleva en un viaje de sabores audaz y emocionante. Inspirada en la
+                                energía vibrante y el espíritu aventurero de los clásicos juegos de feria, esta soda
+                                ofrece una explosión de sabores que te dejará con ganas de más</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Freddy Fizzy Faz</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$3.99 <span></p>
+                    </div>
+                </div>
+
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal17')">
+                        <img src="img/freddy/paleta.webp" alt="Freddy" />
+                    </div>
+
+                    <div id="modal17" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/freddy/paleta.webp" alt="Freddy" class="product-image" />
+                            <h2>Freddy paleta</h2>
+                            <p>Es un delicioso postre congelado que te transporta a un mundo de sabores exóticos y
+                                refrescantes.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Freddy paleta</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$4.99 <span></p>
+                    </div>
+                </div>
+
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal18')">
+                        <img src="img/freddy/pizzza.jpg" alt="Freddy" />
+                    </div>
+
+                    <div id="modal18" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/freddy/pizzza.jpg" alt="Freddy" class="product-image" />
+                            <h2>Freddy Fazbear's Cookie Pizza</h2>
+                            <p>Es una deliciosa y divertida versión de postre inspirada en el famoso personaje de la
+                                franquicia "Five Nights at Freddy's". Esta "pizza" de galleta combina la textura
+                                crujiente de una galleta gigante con una variedad de coberturas dulces para crear una
+                                experiencia gustativa irresistible y visualmente atractiva.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Freddy Fazbear's Cookie Pizza</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$7.99 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal19')">
+                        <img src="img/freddy/peperoni.jpg" alt="Freddy" />
+                    </div>
+
+                    <div id="modal19" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/freddy/peperoni.jpg" alt="Freddy" class="product-image" />
+                            <h2>Freddy Fazbear pizza</h2>
+                            <p>Freddy Fazbear pizza es una interpretación fresca y deliciosa inspirada en el
+                                animatrónico Freddy.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Freddy Fazbear pizza</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$7.99 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal20')">
+                        <img src="img/freddy/soda.webp" alt="Freddy" />
+                    </div>
+
+                    <div id="modal20" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/freddy/soda.webp" alt="Freddy" class="product-image" />
+                            <h2>Freddy orange falvor</h2>
+                            <p>Freddy orange falvor es una bebida refrescante y llena de sabor, inspirada en la energía
+                                y la personalidad del animatrónico Freddy. Imagina una explosión de frescura cítrica con
+                                un toque único que te hace querer más.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Freddy orange falvor</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$1.99 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal21')">
+                        <img src="img/chica/chikken.png" alt="Chica" />
+                    </div>
+                    <div id="modal21" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/chica/chikken.png" alt="Chica" class="product-image" />
+                            <h2>Chica crispy fried chicken</h2>
+                            <p>Chica's Crispy Fried Chicken es una delicia inspirada en el personaje Chica de la popular
+                                franquicia "Five Nights at Freddy's". Esta receta promete pollo frito crujiente y
+                                jugoso, con un sabor irresistible que encantará a todos.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Chica crispy fried chicken</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$14.00 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal22')">
+                        <img src="img/chica/pollo.png" alt="Chica" />
+                    </div>
+
+                    <div id="modal22" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/chica/pollo.png" alt="Chica" class="product-image" />
+                            <h2>Harissa chicken wings</h2>
+                            <p>Harissa Chicken Wings son alitas de pollo marinadas y glaseadas con una sabrosa y picante
+                                mezcla de harissa, una pasta de chile norteafricana. Este plato combina el crujiente del
+                                pollo frito o al horno con el sabor audaz y especiado de la harissa, ofreciendo una
+                                experiencia gastronómica inolvidable.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Harissa chicken wings</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$12.00 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal23')">
+                        <img src="img/chica/burger.png" alt="Monty" />
+                    </div>
+
+                    <div id="modal23" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/chica/burger.png" alt="Monty" class="product-image" />
+                            <h2>Chica Thai Chicken Burger</h2>
+                            <p>Chica Thai Chicken Burger es una deliciosa fusión de sabores tailandeses y la clásica
+                                hamburguesa de pollo.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Chica Thai Chicken Burger</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$3.99 <span></p>
+                    </div>
+                </div>
+
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal24')">
+                        <img src="img/chica/coco.png" alt="Chica" />
+                    </div>
+
+                    <div id="modal24" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/chica/coco.png" alt="Chica" class="product-image" />
+                            <h2>Chica Coconut Curry</h2>
+                            <p>Chica's Coconut Curry es un plato sabroso y aromático que fusiona la rica y cremosa base
+                                del curry de coco con sabores especiados y frescos. Inspirado en Chica de la franquicia
+                                "Five Nights at Freddy's", este curry promete una experiencia culinaria única y
+                                deliciosa.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Chica Coconut Curry</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$4.99 <span></p>
+                    </div>
+                </div>
+
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal25')">
+                        <img src="img/chica/polllo.png" alt="Chica" />
+                    </div>
+
+                    <div id="modal25" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/chica/polllo.png" alt="Chica" class="product-image" />
+                            <h2>Chica's Thai Chicken Salad</h2>
+                            <p>Chica's Thai Chicken Salad es una mezcla deliciosa de sabores. Contiene pollo a la
+                                parrilla, verduras frescas como pepino y zanahoria, hierbas aromáticas como cilantro y
+                                menta, y se sirve con una vinagreta de lima y salsa de pescado.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Chica's Thai Chicken Salad</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$7.99 <span></p>
+                    </div>
+                </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal26')">
+                        <img src="img/chica/soda.webp" alt="Monty" />
+                    </div>
+
+                    <div id="modal26" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/chica/soda.webp" alt="Monty" class="product-image" />
+                            <h2>Chica pink lemonade soda</h2>
+                            <p>Chica pink lemonade Soda es una bebida refrescante y llena de sabor, inspirada en la
+                                energía y la personalidad del animatrónico Chica. Imagina una explosión de frescura
+                                cítrica con un toque único que te hace querer más.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="content-card-product">
+                        <h3>Monty super lemon soda</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$1.99 <span></p>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section about">
+                <h3>Freddy's fazbear pizza</h3>
+                <p>Las mejores pizzas con los ingredientes más frescos. Ordena ahora y disfruta de una experiencia
+                    única.</p>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contáctanos</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> (+503) 7691-2222</li>
+                    <li><i class="fas fa-envelope"></i> Freddyfazbearspizza@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Calle Principal, Ciudad, Principal</li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h3>Síguenos</h3>
+                <div class="flex justify-center space-x-5">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" alt="Facebook" />
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/instagram-new.png" alt="Instagram" />
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/youtube-play.png" alt="YouTube" />
+                    </a </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                <p>&copy; 2024 Freddy's fazbear pizza. Todos los derechos reservados.</p>
+            </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
+        integrity="sha384-rp5soZISbB1i+cwb+bFdOL7p7f5n28vYpZ85D+w0xv5Hnpz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>

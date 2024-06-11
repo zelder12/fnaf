@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freddy fazbear's pizza - Menú Freddy</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="CSS/user.css">
+    <link rel="stylesheet" href="CSS/vista_rapida.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/ico.png" />
+    <style>
+  
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/ico.png" alt="Syscotel Logo">Freddy's</a>
+                </div>
+                <div class="search-cart">
+                    <span class="search-icon"><i class="fas fa-search" onclick="toggleSearch()"></i></span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar..."
+                        style="display: none;">
+                </div>
+                <ul class="nav-links">
+                    <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="about_us.html">Nosotros</a></li>
+                    <li>
+                        <a href="#" class="desktop-item">Secciones</a>
+                        <input type="checkbox" id="showDrop">
+                        <ul class="drop-menu">
+                            <li><a href="menu.html">Menu general</a></li>
+                            <li><a href="Monty.html">Monty</a></li>
+                            <li><a href="Freddy.html">Freddy</a></li>
+                            <li><a href="Chica.html">Chica</a></li>
+                            <li><a href="Roxy.html">Roxy</a></li>
+                          </ul>
+                    </li>
+                    
+                    </li>
+                    <div class="search-cart">
+                        <a href="carrito.html">
+                            <i class="fas fa-shopping-cart" style="color: black"></i>
+                        </a>
+                    </div>
+
+                    <script>
+                        function toggleUserOptions() {
+                            var userOptions = document.getElementById("userOptions");
+                            if (userOptions.style.display === "block") {
+                                userOptions.style.display = "none";
+                            } else {
+                                userOptions.style.display = "block";
+                            }
+                        }
+
+                        function logout() {
+                            window.location.href = "php/logout.php";
+                        }
+                    </script>
+            </div>
+        </nav>
+        <script>
+            var lastScrollTop = 0;
+
+            window.addEventListener("scroll", function () {
+                var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > lastScrollTop && currentScroll > 70) {
+                    document.querySelector("nav").style.top = "-70px";
+                } else {
+                    document.querySelector("nav").style.top = "0";
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, false);
+            function toggleSearch() {
+                var searchInput = document.getElementById("searchInput");
+                if (searchInput.style.display === "none") {
+                    searchInput.style.display = "inline-block";
+                } else {
+                    searchInput.style.display = "none";
+                }
+            }
+            document.getElementById("searchInput").addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    searchProducts();
+                }
+            });
+
+            function searchProducts() {
+                var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+                var allProducts = document.querySelectorAll(".card-product");
+
+                var animatedElements = document.querySelectorAll('[data-aos]');
+                animatedElements.forEach(function (element) {
+                    element.setAttribute('data-aos', '');
+                    element.removeAttribute('data-aos');
+                });
+
+                allProducts.forEach(function (product) {
+                    var productName = product.querySelector("h3").textContent.toLowerCase();
+                    if (productName.includes(searchTerm)) {
+                        product.style.display = "block";
+                        var section = product.closest('div.container-products');
+                        if (section) {
+                            section.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+                        }
+                    } else {
+                        product.style.display = "none";
+                    }
+                });
+            }
+        </script>
+
+    </header>
+
+    <br><br><br><br><br>
+    <div class="gif">
+        <img src="img/freddygif.webp" alt="GIF de bienvenida" class="welcome-gif" data-aos="fade-up-left">
+    </div>
+    <div class="gif2">
+        <img src="img/freddy2.gif" alt="GIF de bienvenida" class="welcome-gif" data-aos="fade-up-right">
+    </div>
+     
+    <style>
+        .gif {
+            img {
+                float: right;
+                width: 110px;
+            }
+
+            div.gif {
+                clear: right;
+            }
+        }
+
+
+        .gif2 {
+            img {
+                float: left;
+                width: 99px;
+            }
+
+            div.gif2 {
+                clear: right;
+            }
+        }
+    </style>
+    <main class="main-content">
+        <br>
+            <h1 class="heading-1">Menú Freddy</h1>
+            <br><br><br><br><br>
+            <div class="container-products">
+                    <div class="card-product">
+                        <div class="container-img" onclick="openModal('modal1')">
+                            <img src="img/freddy/brownie.png" alt="Freddy" />
+                        </div>
+                        <div id="modal1" class="modal" onclick="closeModal(event)">
+                            <div class="modal-content" onclick="event.stopPropagation()">
+                                <span class="close" onclick="closeModal(event)">&times;</span>
+                                <img src="img/freddy/brownie.png" alt="Freddy" class="product-image" />
+                                <h2>Freddy Brownie</h2>
+                                <p>El "Freddy Brownie" es un postre indulgente y decadente que promete satisfacer a cualquier amante del chocolate.</p>
+                                <button onclick="addToCart()">Agregar al carrito</button>
+                            </div>
+                        </div>
+                        
+                        <div class="content-card-product">
+                            <h3>Freddy Brownie</h3>
+                            <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                            <p class="price">$10.00 <span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-product">
+                        <div class="container-img" onclick="openModal('modal2')">
+                            <img src="img/freddy/pizza.webp" alt="Freddy" />
+                        </div>
+                        
+                        <div id="modal2" class="modal" onclick="closeModal(event)">
+                            <div class="modal-content" onclick="event.stopPropagation()">
+                                <span class="close" onclick="closeModal(event)">&times;</span>
+                                <img src="img/freddy/pizza.webp" alt="Freddy" class="product-image" />
+                                <h2>Freddy's Gummy Pizza</h2>
+                                <p>Freddy's Gummy Pizza es una divertida y creativa opción de postre que deleitará tanto a niños como a adultos. Esta "pizza" dulce combina una variedad de golosinas y gominolas para crear una experiencia visualmente atractiva y deliciosamente divertida.</p>
+                                <button onclick="addToCart()">Agregar al carrito</button>
+                            </div>
+                        </div>
+                        
+                        <div class="content-card-product">
+                            <h3>Freddy's Gummy Pizza</h3>
+                            <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                            <p class="price">$7.00 <span></p>
+                        </div>
+                    </div>
+
+                    <div class="card-product">
+                        <div class="container-img" onclick="openModal('modal3')">
+                            <img src="img/freddy/fizzy.webp" alt="Freddy" />
+                        </div>
+                        
+                        <div id="modal3" class="modal" onclick="closeModal(event)">
+                            <div class="modal-content" onclick="event.stopPropagation()">
+                                <span class="close" onclick="closeModal(event)">&times;</span>
+                                <img src="img/freddy/fizzy.webp" alt="Freddy" class="product-image" />
+                                <h2>Freddy Fizzy Faz</h2>
+                                <p>Es una soda que te lleva en un viaje de sabores audaz y emocionante. Inspirada en la energía vibrante y el espíritu aventurero de los clásicos juegos de feria, esta soda ofrece una explosión de sabores que te dejará con ganas de más</p>
+                                <button onclick="addToCart()">Agregar al carrito</button>
+                            </div>
+                        </div>
+                        
+                        <div class="content-card-product">
+                            <h3>Freddy Fizzy Faz</h3>
+                            <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                            <p class="price">$3.99 <span></p>
+                        </div>
+                    </div>
+
+               
+                    <div class="card-product">
+                        <div class="container-img" onclick="openModal('modal4')">
+                            <img src="img/freddy/paleta.webp" alt="Freddy" />
+                        </div>
+                        
+                        <div id="modal4" class="modal" onclick="closeModal(event)">
+                            <div class="modal-content" onclick="event.stopPropagation()">
+                                <span class="close" onclick="closeModal(event)">&times;</span>
+                                <img src="img/freddy/paleta.webp" alt="Freddy" class="product-image" />
+                                <h2>Freddy paleta</h2>
+                                <p>Es un delicioso postre congelado que te transporta a un mundo de sabores exóticos y refrescantes.</p>
+                                <button onclick="addToCart()">Agregar al carrito</button>
+                            </div>
+                        </div>
+                        
+                        <div class="content-card-product">
+                            <h3>Freddy paleta</h3>
+                            <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                            <p class="price">$4.99 <span></p>
+                        </div>
+                    </div>
+
+
+                    <div class="card-product">
+                        <div class="container-img" onclick="openModal('modal5')">
+                            <img src="img/freddy/pizzza.jpg" alt="Freddy" />
+                        </div>
+                        
+                        <div id="modal5" class="modal" onclick="closeModal(event)">
+                            <div class="modal-content" onclick="event.stopPropagation()">
+                                <span class="close" onclick="closeModal(event)">&times;</span>
+                                <img src="img/freddy/pizzza.jpg" alt="Freddy" class="product-image" />
+                                <h2>Freddy Fazbear's Cookie Pizza</h2>
+                                <p>Es una deliciosa y divertida versión de postre inspirada en el famoso personaje de la franquicia "Five Nights at Freddy's". Esta "pizza" de galleta combina la textura crujiente de una galleta gigante con una variedad de coberturas dulces para crear una experiencia gustativa irresistible y visualmente atractiva.</p>
+                                <button onclick="addToCart()">Agregar al carrito</button>
+                            </div>
+                        </div>
+                        
+                        <div class="content-card-product">
+                            <h3>Freddy Fazbear's Cookie Pizza</h3>
+                            <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                            <p class="price">$7.99 <span></p>
+                        </div>
+                    </div>
+
+                    <div class="card-product">
+                        <div class="container-img" onclick="openModal('modal6')">
+                            <img src="img/freddy/peperoni.jpg" alt="Freddy" />
+                        </div>
+                        
+                        <div id="modal6" class="modal" onclick="closeModal(event)">
+                            <div class="modal-content" onclick="event.stopPropagation()">
+                                <span class="close" onclick="closeModal(event)">&times;</span>
+                                <img src="img/freddy/peperoni.jpg" alt="Freddy" class="product-image" />
+                                <h2>Freddy Fazbear pizza</h2>
+                                <p>Freddy Fazbear pizza es una interpretación fresca y deliciosa inspirada en el animatrónico Freddy.</p>
+                                <button onclick="addToCart()">Agregar al carrito</button>
+                            </div>
+                        </div>
+                        
+                        <div class="content-card-product">
+                            <h3>Freddy Fazbear pizza</h3>
+                            <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                            <p class="price">$7.99 <span></p>
+                        </div>
+                    </div>
+
+                <div class="card-product">
+                    <div class="container-img" onclick="openModal('modal7')">
+                        <img src="img/freddy/soda.webp" alt="Freddy" />
+                    </div>
+                    
+                    <div id="modal7" class="modal" onclick="closeModal(event)">
+                        <div class="modal-content" onclick="event.stopPropagation()">
+                            <span class="close" onclick="closeModal(event)">&times;</span>
+                            <img src="img/freddy/soda.webp" alt="Freddy" class="product-image" />
+                            <h2>Freddy orange falvor</h2>
+                            <p>Freddy orange falvor es una bebida refrescante y llena de sabor, inspirada en la energía y la personalidad del animatrónico Freddy. Imagina una explosión de frescura cítrica con un toque único que te hace querer más.</p>
+                            <button onclick="addToCart()">Agregar al carrito</button>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card-product">
+                        <h3>Freddy orange falvor</h3>
+                        <span class="add-cart"><i class="fas fa-shopping-basket"></i></span>
+                        <p class="price">$1.99 <span></p>
+                    </div>
+                </div>
+            </div>
+                <div id="particles-js"></div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section about">
+                <h3>Freddy's fazbear pizza</h3>
+                <p>Las mejores pizzas con los ingredientes más frescos. Ordena ahora y disfruta de una experiencia
+                    única.</p>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contáctanos</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> (+503) 7691-2222</li>
+                    <li><i class="fas fa-envelope"></i> Freddyfazbearspizza@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Calle Principal, Ciudad, Principal</li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h3>Síguenos</h3>
+                <div class="flex justify-center space-x-5">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" alt="Facebook" />
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/instagram-new.png" alt="Instagram" />
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.icons8.com/fluent/30/000000/youtube-play.png" alt="YouTube" />
+                    </a </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                <p>&copy; 2024 Freddy's fazbear pizza. Todos los derechos reservados.</p>
+            </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
+        integrity="sha384-rp5soZISbB1i+cwb+bFdOL7p7f5n28vYpZ85D+w0xv5Hnpz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        AOS.init();
+    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 50,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "shape": {
+                    "type": "image",
+                    "image": {
+                        "src": "img/freddycabeza.gif", 
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 100,
+                    "random": false,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 100,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 20,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": false
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": false,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    });
+</script>
+<audio autoplay loop>
+    <source src="audios/freddy.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+</audio>
+
+</body>
+
+</html>
